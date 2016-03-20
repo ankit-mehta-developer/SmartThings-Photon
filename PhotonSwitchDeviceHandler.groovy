@@ -13,7 +13,7 @@ metadata
     capability "Polling"
   }
   simulator
-  {	}
+  { }
   tiles
   {
     standardTile("switch", "device.switch", width: 2, height: 2, canChangeIcon: true)
@@ -137,9 +137,9 @@ private execute(commandText)
 
 def updateStatus(status)
 {
-	if (status == "offline") { sendEvent(name: "switch", value: "", display: true, descriptionText: device.displayName + " is offline") }
+    if (status == "offline") { sendEvent(name: "switch", value: "", display: true, descriptionText: device.displayName + " is offline") }
     if (status == "off") { sendEvent(name: "switch", value: "off", display: true, descriptionText: device.displayName + " was switched off") }
-	if (status == "on") { sendEvent(name: "switch", value: "on", display: true, descriptionText: device.displayName + " was switched on") }
+    if (status == "on") { sendEvent(name: "switch", value: "on", display: true, descriptionText: device.displayName + " was switched on") }
     if (status == "switchingOn") { sendEvent(name: "switch", value: "off", display: true, descriptionText: device.displayName + " requested to switch on") }
     if (status == "switchingOff") { sendEvent(name: "switch", value: "on", display: true, descriptionText: device.displayName + " requested to switch on") }
 }
