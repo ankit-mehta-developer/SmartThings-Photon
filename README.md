@@ -2,6 +2,7 @@
 Home-Automation using a combination of SmartThings and Photon.
 
 
+
 ###### [PhotonToggleButton.ino](https://github.com/ankit-mehta-developer/SmartThings-Photon/blob/master/PhotonToggleButton.ino)
 Particle Photon (a tiny arduino) can be used to power a Servo motor with an arm to turn on/off switches.
 The code shows how is it possible to automate a toggle switch using a Photon.
