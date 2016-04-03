@@ -51,12 +51,19 @@ def off()
 
 def poll()
 {
+  log.debug("poll called")
+  state.ispolling = true
   refresh()
 }
 
 def refresh()
 {
   log.debug("refresh called")
+  if(state.isrefreshing == true)
+  {
+    log.debug("already refreshing. still proceeding")
+  }
+  state.isrefreshing = true
   try
   {
       httpGet(
@@ -64,7 +71,7 @@ def refresh()
         )
         {
           response -> log.debug(response.data)
-          log.debug(response.data.result)
+          // log.debug(response.data.result)
           try
           {
               if(response.data.result == 1)
@@ -88,13 +95,24 @@ def refresh()
               log.debug("Error during refresh while parsing response")
               updateStatus("offline")
           }
+          refreshComplete()
         }
     }
     catch(all)
     {
         log.debug("Error during refresh in catch all for httpget")
         updateStatus("offline")
+        refreshComplete()
     }
+}
+
+private refreshComplete()
+{
+  state.isrefreshing = false
+  if(state.ispolling == true)
+  {
+    runIn(60 * 10, refresh)
+  }
 }
 
 private execute(commandText)
